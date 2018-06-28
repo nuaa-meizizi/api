@@ -24,15 +24,17 @@ class Py {
     }
 
     public function health_predict($args){
-        $py = '"' . di()->pypath . 'health_predict' . '"';
-        $command = "python {$py} {$args}";
+        $py3 = di()->py3;
+        $py = '"' . di()->pypath . 'health_predict.py' . '"';
+        $command = "{$py3} {$py} {$args}";
         $re = exec($command);
         return $re;
     }
 
     public function eye_predict($args){
-        $py = '"' . di()->pypath . 'eye_predict' . '"';
-        $command = "python {$py} {$args}";
+        $py3 = di()->py3;
+        $py = '"' . di()->pypath . 'predict.py' . '"';
+        $command = "{$py3} {$py} {$args}";
         $re = exec($command);
         return $re;
     }

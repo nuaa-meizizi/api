@@ -23,5 +23,6 @@ return [
         'auth' => '',
         'db' => 0
     ],
-    'pythonPath' => 'C:/'
+    'pythonPath' => '/var/www/html/eye_model/',
+    'py3Path' => '/usr/local/python3/bin/python3.6'
 ];

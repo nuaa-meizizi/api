@@ -37,6 +37,7 @@ $di->notorm = new NotORMDatabase($di->config->get('dbs'), $di->debug);
 $di->response = new \PhalApi\Response\JsonResponse(JSON_UNESCAPED_UNICODE);
 
 $di->pypath = $di->config->get('myConfig.pythonPath');
+$di->py3 = $di->config->get('myConfig.py3Path');
 
 //$di->db = new Medoo($di->config->get('myConfig.medoo'));
 
