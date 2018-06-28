@@ -75,7 +75,7 @@ class Car extends Api {
  * @return void
  */
     public function eye_predict(){
-        return $this->Py->eye_predict();
+        return $this->Py->eye_predict($this->args);
     }
 
 
@@ -86,7 +86,7 @@ class Car extends Api {
  * @return void
  */
     public function health_predict(){
-        return $this->Py->health_predict();
+        return $this->Py->health_predict($this->args);
     }
 }
 
