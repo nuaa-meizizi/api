@@ -29,7 +29,7 @@ class Car extends Api {
                 ],
             ],
             'eye_predict' => [
-                'args' => [
+                'eyeArgs' => [
                     'name' => 'args',
                     'require' => true,
                     'type' => 'string',
@@ -38,7 +38,7 @@ class Car extends Api {
                 ]
             ],
             'health_predict' => [
-                'args' => [
+                'healthArgs' => [
                     'name' => 'args',
                     'require' => true,
                     'type' => 'string',
@@ -75,7 +75,7 @@ class Car extends Api {
  * @return void
  */
     public function eye_predict(){
-        return $this->Py->eye_predict($this->args);
+        return $this->Py->eye_predict($this->eyeArgs);
     }
 
 
@@ -86,7 +86,7 @@ class Car extends Api {
  * @return void
  */
     public function health_predict(){
-        return $this->Py->health_predict($this->args);
+        return $this->Py->health_predict($this->healthArgs);
     }
 }
 
