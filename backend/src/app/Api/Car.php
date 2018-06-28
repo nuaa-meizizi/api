@@ -29,7 +29,7 @@ class Car extends Api {
                 ],
             ],
             'eye_predict' => [
-                'eye' => [
+                'args' => [
                     'name' => 'args',
                     'require' => true,
                     'type' => 'string',
@@ -38,7 +38,7 @@ class Car extends Api {
                 ]
             ],
             'health_predict' => [
-                'eye' => [
+                'args' => [
                     'name' => 'args',
                     'require' => true,
                     'type' => 'string',
