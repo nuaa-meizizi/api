@@ -92,7 +92,7 @@ class Car extends Api {
  * @return void
  */
     public function health_predict(){
-        $args = $this->eyeArgs;
+        $args = $this->healthArgs;
         $re = preg_match('/[^0-9\. ]+/', $args);
         if($re > 0){
             throw new Exception('参数传入错误', 403);
