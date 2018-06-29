@@ -59,6 +59,7 @@ class Car extends Api {
      * @exception 400 非法请求，参数传递错误
 	 */
 	public function index() {
+        return;
         return $this->Py->py();
         return $this->DImagei->index();
         return [
@@ -75,6 +76,11 @@ class Car extends Api {
  * @return void
  */
     public function eye_predict(){
+        $args = $this->eyeArgs;
+        $re = preg_match('/[^0-9\. ]+/', $args);
+        if($re > 0){
+            throw new Exception('参数传入错误', 403);
+        }
         return $this->Py->eye_predict($this->eyeArgs);
     }
 
@@ -86,6 +92,11 @@ class Car extends Api {
  * @return void
  */
     public function health_predict(){
+        $args = $this->eyeArgs;
+        $re = preg_match('/[^0-9\. ]+/', $args);
+        if($re > 0){
+            throw new Exception('参数传入错误', 403);
+        }
         return $this->Py->health_predict($this->healthArgs);
     }
 }
