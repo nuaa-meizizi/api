@@ -4,8 +4,8 @@
     <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">{{$t('login.title')}}</h3>
-        <lang-select class="set-language"></lang-select>
+        <h3 class="title">车载app 后台管理系统</h3>
+        <p class="by">南京航空航天大学·美滋滋</p>
       </div>
 
       <el-form-item prop="username">
@@ -31,14 +31,8 @@
 
       <div class="tips">
         <span>{{$t('login.username')}} : admin</span>
-        <span>{{$t('login.password')}} : {{$t('login.any')}}</span>
+        <span>{{$t('login.password')}} : admin</span>
       </div>
-      <div class="tips">
-        <span style="margin-right:18px;">{{$t('login.username')}} : editor</span>
-        <span>{{$t('login.password')}} : {{$t('login.any')}}</span>
-      </div>
-
-      <el-button class="thirdparty-button" type="primary" @click="showDialog=true">{{$t('login.thirdparty')}}</el-button>
     </el-form>
 
     <el-dialog :title="$t('login.thirdparty')" :visible.sync="showDialog" append-to-body>
@@ -46,7 +40,7 @@
       <br/>
       <br/>
       <br/>
-      <social-sign />
+
     </el-dialog>
 
   </div>
@@ -54,11 +48,9 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
-import LangSelect from '@/components/LangSelect'
-import SocialSign from './socialsignin'
 
 export default {
-  components: { LangSelect, SocialSign },
+  components: { },
   name: 'login',
   data() {
     const validateUsername = (rule, value, callback) => {
@@ -242,6 +234,12 @@ $light_gray:#eee;
     position: absolute;
     right: 35px;
     bottom: 28px;
+  }
+  .by{
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size:1.2em;
   }
 }
 </style>
