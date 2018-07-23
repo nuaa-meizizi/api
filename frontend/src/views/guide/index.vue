@@ -1,9 +1,7 @@
 <template>
   <div class="app-container">
     <p class="warn-content">
-      {{$t('guide.description')}}
-      <a href="https://github.com/kamranahmedse/driver.js" target="_blank">driver.js.
-      </a>
+      这里看需求 要不要放个那啥的引导
     </p>
     <el-button icon='el-icon-question' type="primary" @click.prevent.stop="guide">{{$t('guide.button')}}</el-button>
   </div>

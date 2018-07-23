@@ -6,7 +6,7 @@
           <svg-icon icon-class="peoples" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">New Visits</div>
+          <div class="card-panel-text">当前在线车主</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="102400" :duration="2600"></count-to>
         </div>
       </div>
@@ -17,7 +17,7 @@
           <svg-icon icon-class="message" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">Messages</div>
+          <div class="card-panel-text">处理突发事件</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="81212" :duration="3000"></count-to>
         </div>
       </div>
@@ -25,10 +25,10 @@
     <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
       <div class="card-panel" @click="handleSetLineChartData('purchases')">
         <div class="card-panel-icon-wrapper icon-money">
-          <svg-icon icon-class="money" class-name="card-panel-icon" />
+          <svg-icon icon-class="dashboard" class-name="card-panel-icon" />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">Purchases</div>
+          <div class="card-panel-text">行驶里程</div>
           <count-to class="card-panel-num" :startVal="0" :endVal="9280" :duration="3200"></count-to>
         </div>
       </div>
