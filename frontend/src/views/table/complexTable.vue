@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" :placeholder="$t('table.title')" v-model="listQuery.title">
+      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="用户名" v-model="listQuery.title">
       </el-input>
       <el-select clearable style="width: 90px" class="filter-item" v-model="listQuery.importance" :placeholder="$t('table.importance')">
         <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item">
@@ -23,43 +23,83 @@
 
     <el-table :key='tableKey' :data="list" v-loading="listLoading" border fit highlight-current-row
       style="width: 100%;min-height:1000px;">
-      <el-table-column align="center" :label="$t('table.id')" width="65">
+      <el-table-column align="center" label="用户id" width="65">
         <template slot-scope="scope">
           <span>{{scope.row.id}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="150px" align="center" :label="$t('table.date')">
+      <el-table-column width="110px" align="center" label="姓名">
+        <template slot-scope="scope">
+          <span>{{scope.row.author}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="150px" align="center" label="最后在线时间">
         <template slot-scope="scope">
           <span>{{scope.row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}')}}</span>
         </template>
       </el-table-column>
+      <el-table-column min-width="100px" label="心跳">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.heartbeats || 60}}</span>
+          <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
+        </template>
+      </el-table-column>
+       <el-table-column min-width="100px" label="舒张压">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.shu || 60}}</span>
+          <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
+        </template>
+      </el-table-column>
+       <el-table-column min-width="100px" label="收缩压">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.shou || 60}}</span>
+          <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
+        </template>
+      </el-table-column>
+       <el-table-column min-width="100px" label="体重">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.weight || 60}}</span>
+          <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column min-width="100px" label="体温">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.temprature || 60}}</span>
+          <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column min-width="100px" label="眼动">
+        <template slot-scope="scope">
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.eye || 60}}</span>
+          <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
+        </template>
+      </el-table-column>
+<!--
       <el-table-column min-width="150px" :label="$t('table.title')">
         <template slot-scope="scope">
           <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.title}}</span>
           <el-tag>{{scope.row.type | typeFilter}}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column width="110px" align="center" :label="$t('table.author')">
-        <template slot-scope="scope">
-          <span>{{scope.row.author}}</span>
-        </template>
-      </el-table-column>
+-->
       <el-table-column width="110px" v-if='showReviewer' align="center" :label="$t('table.reviewer')">
         <template slot-scope="scope">
           <span style='color:red;'>{{scope.row.reviewer}}</span>
         </template>
       </el-table-column>
-      <el-table-column width="80px" :label="$t('table.importance')">
+      <el-table-column width="80px" label="安全评级">
         <template slot-scope="scope">
           <svg-icon v-for="n in +scope.row.importance" icon-class="star" class="meta-item__icon" :key="n"></svg-icon>
         </template>
       </el-table-column>
+      <!--
       <el-table-column align="center" :label="$t('table.readings')" width="95">
         <template slot-scope="scope">
           <span v-if="scope.row.pageviews" class="link-type" @click='handleFetchPv(scope.row.pageviews)'>{{scope.row.pageviews}}</span>
           <span v-else>0</span>
         </template>
       </el-table-column>
+      -->
       <el-table-column class-name="status-col" :label="$t('table.status')" width="100">
         <template slot-scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{scope.row.status}}</el-tag>
@@ -68,12 +108,14 @@
       <el-table-column align="center" :label="$t('table.actions')" width="230" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">{{$t('table.edit')}}</el-button>
+          <!--
           <el-button v-if="scope.row.status!='published'" size="mini" type="success" @click="handleModifyStatus(scope.row,'published')">{{$t('table.publish')}}
           </el-button>
           <el-button v-if="scope.row.status!='draft'" size="mini" @click="handleModifyStatus(scope.row,'draft')">{{$t('table.draft')}}
           </el-button>
           <el-button v-if="scope.row.status!='deleted'" size="mini" type="danger" @click="handleModifyStatus(scope.row,'deleted')">{{$t('table.delete')}}
           </el-button>
+          -->
         </template>
       </el-table-column>
     </el-table>
@@ -133,6 +175,7 @@
 </template>
 
 <script>
+// 舒张压 收缩压 心跳 体重 体温 眼动
 import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
 import waves from '@/directive/waves' // 水波纹指令
 import { parseTime } from '@/utils'
