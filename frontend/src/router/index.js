@@ -71,6 +71,7 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
+  /*
   {
     path: '/permission',
     component: Layout,
@@ -99,7 +100,8 @@ export const asyncRouterMap = [
       }
     }]
   },
-
+  */
+/*
   {
     path: '/icon',
     component: Layout,
@@ -110,7 +112,8 @@ export const asyncRouterMap = [
       meta: { title: 'icons', icon: 'icon', noCache: true }
     }]
   },
-
+*/
+/*
   {
     path: '/components',
     component: Layout,
@@ -136,7 +139,7 @@ export const asyncRouterMap = [
       { path: 'drag-kanban', component: () => import('@/views/components-demo/dragKanban'), name: 'dragKanban-demo', meta: { title: 'dragKanban' }}
     ]
   },
-
+*/
   {
     path: '/charts',
     component: Layout,
@@ -147,12 +150,14 @@ export const asyncRouterMap = [
       icon: 'chart'
     },
     children: [
-      { path: 'keyboard', component: () => import('@/views/charts/keyboard'), name: 'keyboardChart', meta: { title: 'keyboardChart', noCache: true }},
+      { path: 'usermap', component: () => import('@/views/charts/keyboard'), name: '用户分布图', meta: { title: '用户分布图', noCache: true, icon: 'chart' }}
+      /*
       { path: 'line', component: () => import('@/views/charts/line'), name: 'lineChart', meta: { title: 'lineChart', noCache: true }},
-      { path: 'mixchart', component: () => import('@/views/charts/mixChart'), name: 'mixChart', meta: { title: 'mixChart', noCache: true }}
+      { path: 'mixchart', component: () => import('@/views/charts/mixChart'), name: 'mixChart', meta: { title: 'mixChart', noCache: true }}*/
     ]
   },
 
+  /*
   {
     path: '/tab',
     component: Layout,
@@ -163,7 +168,7 @@ export const asyncRouterMap = [
       meta: { title: 'tab', icon: 'tab' }
     }]
   },
-
+*/
   {
     path: '/table',
     component: Layout,
@@ -182,7 +187,7 @@ export const asyncRouterMap = [
       { path: 'complex-table', component: () => import('@/views/table/complexTable'), name: 'complexTable', meta: { title: 'complexTable' }}
     ]
   },
-
+  /*
   {
     path: '/example',
     component: Layout,
@@ -197,8 +202,8 @@ export const asyncRouterMap = [
       { path: 'edit/:id(\\d+)', component: () => import('@/views/example/edit'), name: 'editArticle', meta: { title: 'editArticle', noCache: true }, hidden: true },
       { path: 'list', component: () => import('@/views/example/list'), name: 'articleList', meta: { title: 'articleList', icon: 'list' }}
     ]
-  },
-
+  },*/
+  /*
   {
     path: '/nested',
     component: Layout,
@@ -259,7 +264,7 @@ export const asyncRouterMap = [
       }
     ]
   },
-
+*/
   {
     path: '/error',
     component: Layout,
@@ -272,9 +277,11 @@ export const asyncRouterMap = [
     children: [
       { path: '401', component: () => import('@/views/errorPage/401'), name: 'page401', meta: { title: 'page401', noCache: true }},
       { path: '404', component: () => import('@/views/errorPage/404'), name: 'page404', meta: { title: 'page404', noCache: true }}
-    ]
+    ],
+    hidden: true
   },
 
+  /*
   {
     path: '/error-log',
     component: Layout,
@@ -326,6 +333,6 @@ export const asyncRouterMap = [
     component: Layout,
     children: [{ path: 'index', component: () => import('@/views/i18n-demo/index'), name: 'i18n', meta: { title: 'i18n', icon: 'international' }}]
   },
-
+*/
   { path: '*', redirect: '/404', hidden: true }
 ]

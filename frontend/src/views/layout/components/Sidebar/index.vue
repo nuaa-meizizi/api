@@ -9,6 +9,7 @@
       text-color="#bfcbd9"
       active-text-color="#409EFF"
     >
+    6668
       <sidebar-item v-for="route in permission_routers" :key="route.name" :item="route" :base-path="route.path"></sidebar-item>
     </el-menu>
   </el-scrollbar>
