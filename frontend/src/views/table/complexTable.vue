@@ -40,37 +40,31 @@
       </el-table-column>
       <el-table-column min-width="100px" label="心跳">
         <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.heartbeats || 60}}</span>
           <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
         </template>
       </el-table-column>
        <el-table-column min-width="100px" label="舒张压">
         <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.shu || 60}}</span>
           <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
         </template>
       </el-table-column>
        <el-table-column min-width="100px" label="收缩压">
         <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.shou || 60}}</span>
           <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
         </template>
       </el-table-column>
        <el-table-column min-width="100px" label="体重">
         <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.weight || 60}}</span>
           <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column min-width="100px" label="体温">
         <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.temprature || 60}}</span>
           <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
         </template>
       </el-table-column>
       <el-table-column min-width="100px" label="眼动">
         <template slot-scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.eye || 60}}</span>
           <el-tag :type="scope.row.status | statusFilter">{{'安全' || scope.row.type}}</el-tag>
         </template>
       </el-table-column>
